@@ -1,0 +1,58 @@
+<div class="add-task">
+  <h2>Add Task</h2>
+  <form
+    #taskForm="ngForm"
+    (ngSubmit)="taskForm.form.valid && onSubmit()"
+    class="needs-validation"
+    novalidate
+  >
+    <div class="form-group mb-3">
+      <label for="title">Title:</label>
+      <input
+        type="text"
+        id="title"
+        name="title"
+        [(ngModel)]="newTask['title']"
+        #title = "ngModel"
+        class="form-control"
+        required
+      />
+      <span class="text-danger"
+      *ngIf="(taskForm.submitted) && title.errors?.['required']">
+      Title is required
+  </span>
+    </div>
+    <div class="form-group mb-3">
+      <label for="description">Description:</label>
+      <textarea
+        id="description"
+        name="description"
+        [(ngModel)]="newTask['description']"
+        #description="ngModel"
+        class="form-control"
+        required
+      ></textarea>
+      <span class="text-danger"
+      *ngIf="(taskForm.submitted) && description.errors?.['required']">
+      Description is required
+  </span>
+    </div>
+    <div class="form-group mb-3">
+      <label for="dueDate">Due Date:</label>
+      <input
+        type="date"
+        id="dueDate"
+        name="dueDate"
+        [(ngModel)]="newTask['dueDate']"
+        #dueDate="ngModel"
+        class="form-control"
+        required
+      />
+      <span class="text-danger"
+      *ngIf="(taskForm.submitted) && dueDate.errors?.['required']">
+      Due Date is required
+  </span>
+    </div>
+    <button type="submit" class="btn btn-primary mt-3">Add Task</button>
+  </form>
+</div>
